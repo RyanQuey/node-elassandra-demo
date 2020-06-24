@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 
 const indexRouter = require('./routes/index');
-const bodyParser = require('body-parser');
 const request = require('request')
 
 process.env.NODE_ENV = process.env.NODE_ENV || "development" 
@@ -14,10 +13,6 @@ const clientUrl = process.env.CLIENT_URL || "http://localhost:3000"
 
 const app = express();
 
-/*
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); // for parsing application/x-www-form-urlencoded
-*/
 app.use(express.json());
 
 app.use(function(req, res, next) {
@@ -26,47 +21,33 @@ app.use(function(req, res, next) {
   next();
 });
 
-
-app.use("/flight-search", (req, res) => {
-	const method = req.method.toLowerCase();
+app.use("/flight-search", (req, res, next) => {
+  const method = req.method.toLowerCase();
   const body = req.body;
 
-	const headers = {
+  const headers = {
     'Content-Type': "application/json",
   }
   const url = `${elasticsearchUrl}${req.originalUrl.replace('/flight-search', "/kibana_sample_data_flights")}`
-	console.log("method", method)
-	console.log("url", url)
-	console.log("body", body)
-	const options = {
+  const options = {
     uri: url,
     headers,
     method: 'POST',
     json: body,
   };
 
-	request(options, (esError, esRes, esResBody) => {
-
-		if (esError) {
-      console.error("***error:***")
-      console.log(esError)
+  request(options, (esError, esRes, esResBody) => {
+    if (esError) {
+      console.log("Error getting data from ES")
       return next(esError);
-    } else {
-      console.log(esRes.statusCode) // 200
-      console.log(esResBody) // 200
 
+    } else {
       return res.send(esResBody);
     }
   })
 })
 
-
-
 app.use(express.static(path.join(__dirname, 'build')));
-
-app.get('/ping', function (req, res) {
- return res.send('pong');
-});
 
 app.use('/', indexRouter);
 app.use('*', (req, res, next) => {
@@ -76,8 +57,7 @@ app.use('*', (req, res, next) => {
 
 // error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-	console.error(err);
+  console.error(err);
   res.send('error: ' + err.toString());
 });
 
