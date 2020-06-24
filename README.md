@@ -2,9 +2,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Run in Dev Env
 
+First to start Elassandra on two nodes: 
+```
+docker-compose --project-name test -f ./ci/docker-compose.yml up -d --scale node=1
+```
+
 In the project directory, you can run:
 
 ### `npm start`
+
+And then, in a different terminal: 
 ### `nodemon app.js --config ./nodemon.json`
 
 Runs the app in the development mode.<br />

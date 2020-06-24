@@ -15,7 +15,7 @@ import {
   NoHits,
   HitsStats,
   SearchkitComponent,
-  MovieHitsGridItem,
+  //MovieHitsGridItem,
   SelectedFilters,
   MenuFilter,
   HierarchicalMenuFilter,
@@ -24,8 +24,9 @@ import {
 } from "searchkit";
 
 import './App.css';
-const searchkit = new SearchkitManager("http://demo.searchkit.co/api/movies/")
+import FlightHit from './components/FlightHit.js';
 
+const searchkit = new SearchkitManager("http://localhost:8080/flight-search")
 
 function App() {
   return (
@@ -35,20 +36,30 @@ function App() {
           <SearchBox
             autofocus={true}
             searchOnChange={true}
-            prefixQueryFields={["actors^1","type^2","languages","title^10"]}/>
+            prefixQueryFields={["Carrier^3", "Dest^3", "DestCityName^3", "DestCountry^2", "DestRegion^2", "DestAirportID^5", "DestWeather", "FlightNum^6", "Origin^3", "OriginCityName^3", "OriginCountry^2", "OriginRegion", "OriginAirportID^5", "OriginWeather"]}
+          />
         </TopBar>
         <LayoutBody>
           <SideBar>
             <HierarchicalMenuFilter
-              fields={["type.raw", "genres.raw"]}
-              title="Categories"
-              id="categories"/>
+              fields={["Carrier"]}
+              title="Carrier"
+              id="carrier"
+            />
             <RefinementListFilter
-              id="actors"
-              title="Actors"
-              field="actors.raw"
+              id="Dest"
+              title="Destination"
+              field="Dest"
               operator="AND"
-              size={10}/>
+              size={10}
+            />
+            <RefinementListFilter
+              id="Origin"
+              title="Origin"
+              field="Origin"
+              operator="AND"
+              size={10}
+            />
           </SideBar>
           <LayoutResults>
             <ActionBar>
@@ -63,8 +74,8 @@ function App() {
               </ActionBarRow>
 
             </ActionBar>
-            <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={MovieHitsGridItem}
-              sourceFilter={["title", "poster", "imdbId"]}/>
+            <Hits mod="sk-hits-grid" hitsPerPage={10} itemComponent={FlightHit}
+            />
             <NoHits/>
           </LayoutResults>
         </LayoutBody>
