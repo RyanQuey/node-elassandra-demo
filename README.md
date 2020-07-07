@@ -1,4 +1,12 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A demo project, demonstrating how to incorporate Elassandra (using Docker), NodeJS (specifically, Express), and React with Searchkit. To complement my [two part blog post](https://medium.com/@rlquey2/elassandra-with-nodejs-demo-part-1-setting-up-elassandra-f94234aa4fc1).
+
+![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/now-working.png)
+
+![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/japan-only.png)
+
+![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/k-dashboard.png)
+
+![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/final.png)
 
 ## Run in Dev Env
 
@@ -7,11 +15,11 @@ First to start Elassandra on two nodes:
 docker-compose --project-name test -f ./ci/docker-compose.yml up -d --scale node=1
 ```
 
-In the project directory, you can run:
+Then to start the live reloading React server, in the project directory, run:
 
 ### `npm start`
 
-And then, in a different terminal: 
+You will also need to separately start the NodeJS server in a different terminal: 
 ### `nodemon app.js --config ./nodemon.json`
 
 Runs the app in the development mode.<br />
@@ -26,9 +34,6 @@ Launches the test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ## Deploy
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### Deployment
 
 ### `npm run build`
 
