@@ -1,12 +1,10 @@
 A demo project, demonstrating how to incorporate Elassandra (using Docker), NodeJS (specifically, Express), and React with Searchkit. To complement my [two part blog post](https://medium.com/@rlquey2/elassandra-with-nodejs-demo-part-1-setting-up-elassandra-f94234aa4fc1).
 
-![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/now-working.png)
+![image](https://github.com/RyanQuey/node-elassandra-demo/raw/master/screenshots/now-working.png)
 
-![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/japan-only.png)
+![image](https://github.com/RyanQuey/node-elassandra-demo/raw/master/screenshots/japan-only.png)
 
-![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/k-dashboard.png)
-
-![image](https://github.com/RyanQuey/node-elassandra-demo/blob/bbaae411738ad7f4c2d2035f0af4e00932662880/screenshots/final.png)
+![image](https://github.com/RyanQuey/node-elassandra-demo/raw/master/screenshots/final.png)
 
 ## Run in Dev Env
 
